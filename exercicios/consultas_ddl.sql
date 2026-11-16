@@ -27,7 +27,7 @@ CREATE TABLE especialidade (
     descricao VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE possui (
+CREATE TABLE medicoEspecialidade (
     crm VARCHAR(20) NOT NULL,
     id_especialidade INT NOT NULL,
     PRIMARY KEY (crm, id_especialidade),    -- impede um medico de ter a mesma especialidade cadastrada mais de uma vez
@@ -38,9 +38,9 @@ CREATE TABLE possui (
 CREATE TABLE agendamento (
     codigo_paciente VARCHAR(10) NOT NULL,
     crm_medico VARCHAR(20) NOT NULL,
-    data_hora_consulta TIMESTAMP NOT NULL,
-    data_hora_agendamento TIMESTAMP NOT NULL,
-    valor_consulta NUMERIC(10,2) NOT NULL,
+    data_hora_consulta DATETIME (DD-MM-AAAA HH:MM:SS) NOT NULL,
+    data_hora_agendamento DATETIME (DD-MM-AAAA HH:MM:SS) NOT NULL,
+    valor_consulta VARCHAR(10) NOT NULL,
     PRIMARY KEY (codigo_paciente, crm_medico, data_hora_consulta),
     FOREIGN KEY (codigo_paciente) REFERENCES paciente(codigo),
     FOREIGN KEY (crm_medico) REFERENCES medico(crm)
